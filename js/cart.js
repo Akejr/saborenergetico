@@ -108,31 +108,43 @@ const Cart = {
     },
 
     bindEvents() {
-        // Add to Cart Buttons
-        document.querySelectorAll('.add-to-cart, #add-to-cart-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
+        // Add to Cart & Buy Now Buttons
+        document.querySelectorAll('.add-to-cart, .buy-now-btn').forEach(btn => {
+            btn.addEventListener('click', async (e) => { // Async for Buy Now flow
+                // Check size validation first if on product page
+                if (typeof selectedSize !== 'undefined' && !selectedSize) {
+                    alert('Por favor, selecione um tamanho.');
+                    return;
+                }
+
                 // Determine if it's a card button or product page button
                 const btn = e.currentTarget;
-                const id = btn.dataset.id || 'unknown'; // Fallback
+                const id = btn.dataset.id || 'unknown';
                 const name = btn.dataset.name || document.title;
                 const price = btn.dataset.price || '0.00';
 
-                // Try to find image
+                // Get Image
                 let image = '';
-                // If on product page
                 if (document.querySelector('.bg-cover[data-alt*="Costas"]')) {
-                    const style = document.querySelector('.bg-cover[data-alt*="Costas"]').getAttribute('style'); // Get main image
+                    const style = document.querySelector('.bg-cover[data-alt*="Costas"]').getAttribute('style');
                     const match = style.match(/url\("([^"]+)"\)/);
                     if (match) image = match[1];
-                }
-                // If on card
-                else if (btn.closest('.offset-card')) {
+                } else if (btn.closest('.offset-card')) {
                     const style = btn.closest('.offset-card').querySelector('.bg-center').getAttribute('style');
                     const match = style.match(/url\(['"]([^'"]+)['"]\)/);
                     if (match) image = match[1];
                 }
 
                 this.addItem(id, name, price, image);
+
+                // If Buy Now, trigger checkout immediately
+                if (btn.classList.contains('buy-now-btn')) {
+                    this.openCart(); // Show user what happened
+                    const checkoutBtn = document.getElementById('checkout-btn');
+                    if (checkoutBtn) {
+                        this.processCheckout(checkoutBtn);
+                    }
+                }
             });
         });
 
@@ -180,9 +192,11 @@ const Cart = {
                 items: items
             };
 
-            // Usando proxy CORS para contornar restrições de local development
-            // Em produção, você deve chamar isso do seu backend ou configurar devidamente
-            const response = await fetch('https://corsproxy.io/?' + encodeURIComponent('https://api.infinitepay.io/invoices/public/checkout/links'), {
+            // Trocando proxy para allorigins.win (mais permissivo)
+            const proxyUrl = 'https://api.allorigins.win/raw?url=';
+            const targetUrl = 'https://api.infinitepay.io/invoices/public/checkout/links';
+
+            const response = await fetch(proxyUrl + encodeURIComponent(targetUrl), {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
