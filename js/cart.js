@@ -189,7 +189,8 @@ const Cart = {
 
             const payload = {
                 handle: "onlinepayment2026",
-                items: items
+                items: items,
+                redirect_url: window.location.origin + '/success.html'
             };
 
             // Lógica inteligente de Proxy:
