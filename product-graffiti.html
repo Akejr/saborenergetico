@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html class="dark" lang="pt-BR">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Edição Graffiti | Sabor Energético - Camisas do Toguro</title>
+    <meta name="description"
+        content="Camisa Edição Graffiti Off-White - Sabor Energético. Arte urbana e caos vital. O estilo street do Toguro em edição limitada." />
+    <meta name="keywords" content="camisa graffiti, off-white, sabor energético, camisas toguro, moda street" />
+    <meta property="og:title" content="Edição Graffiti | Sabor Energético" />
+    <meta property="og:image" content="images/graffiti.jpg" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Titan+One&display=swap" rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#149cb8",
+                        "background-light": "#f1f1f4",
+                        "background-dark": "#17171c",
+                        "urgency": "#D44A14"
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .brutalist-border {
+            border: 2px solid currentColor;
+        }
+    </style>
+    <!-- Vercel Analytics -->
+    <script>
+        window.va = window.va || function () { (window.va.q = window.va.q || []).push(arguments); };
+    </script>
+    <script defer src="/_vercel/insights/script.js"></script>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark text-black dark:text-white transition-colors duration-300">
+
+    <!-- URGENCY TOP BAR (Shared) -->
+    <div class="w-full bg-urgency text-white py-4 px-6 sticky top-0 z-50 border-b-2 border-black dark:border-white">
+        <div class="max-w-[1200px] mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+                <span class="material-symbols-outlined text-3xl">warning</span>
+                <h2 class="text-xl md:text-2xl font-black tracking-tighter uppercase leading-none">
+                    Este site será excluído em:
+                </h2>
+            </div>
+            <div class="flex gap-4 items-center" id="countdown">
+                <div class="flex flex-col items-center">
+                    <span class="text-2xl font-black leading-none" id="days">02</span>
+                    <span class="text-[10px] uppercase font-bold tracking-widest">Days</span>
+                </div>
+                <!-- ... (Shortened for brevity, JS will fill) -->
+                <span class="text-2xl font-black">:</span>
+                <div class="flex flex-col items-center">
+                    <span class="text-2xl font-black leading-none" id="hours">23</span>
+                    <span class="text-[10px] uppercase font-bold tracking-widest">Hrs</span>
+                </div>
+                <span class="text-2xl font-black">:</span>
+                <div class="flex flex-col items-center">
+                    <span class="text-2xl font-black leading-none" id="minutes">59</span>
+                    <span class="text-[10px] uppercase font-bold tracking-widest">Min</span>
+                </div>
+                <span class="text-2xl font-black">:</span>
+                <div class="flex flex-col items-center">
+                    <span class="text-2xl font-black leading-none animate-pulse" id="seconds">42</span>
+                    <span class="text-[10px] uppercase font-bold tracking-widest">Sec</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN NAVIGATION (Shared) -->
+    <header class="border-b border-black/10 dark:border-white/10 px-6 py-6">
+        <div class="max-w-[1200px] mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-6">
+                <!-- Logo removed -->
+                <nav class="hidden md:flex gap-8 items-center text-sm font-bold uppercase tracking-widest opacity-80">
+                    <a class="hover:text-primary transition-colors" href="index.html">Catálogo</a>
+                    <a class="hover:text-primary transition-colors" href="#">Drop 01</a>
+                    <a class="hover:text-primary transition-colors" href="#">Archives</a>
+                </nav>
+            </div>
+            <div class="flex items-center gap-4">
+                <button
+                    class="p-2 border border-black/10 dark:border-white/20 hover:bg-black/5 dark:hover:bg-white/5 rounded relative"
+                    id="cart-btn">
+                    <span class="material-symbols-outlined">shopping_cart</span>
+                    <span
+                        class="absolute -top-1 -right-1 bg-primary text-[10px] text-white w-4 h-4 rounded-full flex items-center justify-center font-bold"
+                        id="cart-count">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- PRODUCT DETAILS MAIN -->
+    <main class="max-w-[1200px] mx-auto px-6 py-12 lg:py-20 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20">
+        <!-- Left Column: Gallery -->
+        <div class="lg:col-span-7 flex flex-col gap-6">
+            <!-- Main Image -->
+            <div
+                class="relative w-full aspect-[3/4] bg-[#232629] overflow-hidden rounded-lg border-2 border-transparent hover:border-primary transition-all">
+                <div class="absolute inset-0 bg-cover bg-center" data-alt="Camiseta Edição Graffiti Costas"
+                    style='background-image: url("images/graffiti.jpg"); background-size: cover; background-position: center;'>
+                </div>
+            </div>
+            <!-- Secondary Image -->
+            <div
+                class="relative w-full aspect-[3/4] bg-[#232629] overflow-hidden rounded-lg border-2 border-transparent hover:border-primary transition-all">
+                <div class="absolute inset-0 bg-cover bg-center" data-alt="Camiseta Edição Graffiti Frente"
+                    style='background-image: url("images/graffiti-front.png");'>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Column: Info -->
+        <div class="lg:col-span-5 lg:sticky lg:top-32 self-start flex flex-col gap-8">
+            <div class="flex flex-col gap-2">
+                <div class="flex justify-between items-start border-b border-black/10 dark:border-white/10 pb-4">
+                    <span class="text-xs font-bold tracking-[0.2em] text-primary uppercase">Drop 01 // Item 03</span>
+                    <span class="text-xs font-bold tracking-[0.2em] text-urgency uppercase">Lote Único</span>
+                </div>
+                <h1 class="text-4xl md:text-5xl font-black leading-none tracking-tighter uppercase mt-4">EDIÇÃO GRAFFITI
+                </h1>
+                <p class="text-3xl font-black text-primary mt-2">R$ 149,99</p>
+            </div>
+
+            <div class="flex items-center gap-3 text-urgency bg-urgency/10 p-3 rounded border border-urgency/20">
+                <span class="material-symbols-outlined">warning</span>
+                <p class="text-xs font-bold tracking-widest uppercase">Street Art: Exclusividade Urbana</p>
+            </div>
+
+            <p class="text-base leading-relaxed opacity-70 font-medium">
+                A energia das ruas convertida em vestuário. Design explosivo com traços de graffiti que representam o
+                caos e a vitalidade da metrópole. Base Off-White para destacar cada cor.
+            </p>
+
+            <!-- Size Selection -->
+            <div class="flex flex-col gap-4">
+                <div class="flex justify-between items-end">
+                    <p class="text-xs font-bold uppercase tracking-widest">Selecionar Tamanho</p>
+                    <button class="text-xs font-bold uppercase tracking-widest opacity-50 underline">Guia</button>
+                </div>
+                <div class="grid grid-cols-4 gap-2" id="size-options">
+                    <button onclick="selectSize(this, 'P')"
+                        class="size-btn py-4 text-sm font-black border-2 border-black/10 dark:border-white/10 hover:border-primary hover:text-primary transition-all">P</button>
+                    <button onclick="selectSize(this, 'M')"
+                        class="size-btn py-4 text-sm font-black border-2 border-black/10 dark:border-white/10 hover:border-primary hover:text-primary transition-all">M</button>
+                    <button onclick="selectSize(this, 'G')"
+                        class="size-btn py-4 text-sm font-black border-2 border-black/10 dark:border-white/10 hover:border-primary hover:text-primary transition-all">G</button>
+                    <button onclick="selectSize(this, 'GG')"
+                        class="size-btn py-4 text-sm font-black border-2 border-black/10 dark:border-white/10 hover:border-primary hover:text-primary transition-all">GG</button>
+                </div>
+            </div>
+
+            <!-- Actions -->
+            <div class="flex flex-col gap-3 pt-4">
+                <button
+                    class="w-full bg-primary text-white py-4 font-black uppercase tracking-widest text-sm hover:brightness-110 transition-all rounded shadow-lg flex items-center justify-center gap-2 group">
+                    <span>Comprar Agora</span>
+                    <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">bolt</span>
+                </button>
+                <button
+                    class="add-to-cart w-full bg-transparent border-2 border-black dark:border-white text-black dark:text-white py-4 font-black uppercase tracking-widest text-sm hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all rounded"
+                    data-id="3" data-name="Edição Graffiti" data-price="149.99">
+                    Adicionar ao Carrinho
+                </button>
+            </div>
+
+            <!-- Specs -->
+            <div class="grid grid-cols-2 gap-4 mt-8 border-t border-black/10 dark:border-white/10 pt-8">
+                <div>
+                    <p class="text-[10px] font-bold uppercase tracking-widest opacity-50 mb-1">Material</p>
+                    <p class="text-sm font-bold">100% Algodão Premium</p>
+                </div>
+                <div>
+                    <p class="text-[10px] font-bold uppercase tracking-widest opacity-50 mb-1">Cor</p>
+                    <p class="text-sm font-bold">OFF-WHITE</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER (Shared) -->
+    <footer class="border-t border-black/10 dark:border-white/10 py-12 px-6">
+        <div class="max-w-[1200px] mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="flex flex-col gap-2">
+                <!-- Logo removed -->
+                <p class="text-xs opacity-50 uppercase tracking-widest font-bold">© 2026 - Protocolo de Exclusão Ativo
+                </p>
+            </div>
+
+            <div class="bg-urgency/10 border border-urgency px-4 py-2 rounded">
+                <span class="text-urgency font-black uppercase text-[10px] tracking-[0.3em]">Status: Site Purge
+                    Scheduled</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- CART MODAL -->
+    <div id="cart-modal" class="fixed inset-0 bg-black/80 z-[100] hidden items-center justify-center p-6">
+        <div
+            class="bg-background-light dark:bg-background-dark border-2 border-black dark:border-white max-w-lg w-full max-h-[80vh] overflow-hidden rounded-lg">
+            <div class="flex justify-between items-center p-6 border-b border-black/10 dark:border-white/10">
+                <h3 class="text-2xl font-black uppercase tracking-tighter">Seu Carrinho</h3>
+                <button id="close-cart" class="p-2 hover:bg-black/10 dark:hover:bg-white/10 rounded">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+            <div id="cart-items" class="p-6 overflow-y-auto max-h-[50vh]">
+                <p class="text-center opacity-50">Carrinho vazio</p>
+            </div>
+            <div class="p-6 border-t border-black/10 dark:border-white/10">
+                <div class="flex justify-between items-center mb-4">
+                    <span class="font-bold uppercase tracking-widest">Total:</span>
+                    <span id="cart-total" class="text-2xl font-black text-primary">R$ 0,00</span>
+                </div>
+                <button id="checkout-btn"
+                    class="w-full bg-primary text-white py-4 font-black uppercase tracking-widest hover:brightness-110 transition-all rounded">
+                    Finalizar Compra
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SHARED SCRIPTS -->
+    <script src="js/global.js"></script>
+    <script>
+        // Size Selection Logic
+        let selectedSize = null;
+
+        function selectSize(btn, size) {
+            selectedSize = size;
+
+            // Reset styles
+            document.querySelectorAll('.size-btn').forEach(b => {
+                b.className = 'size-btn py-4 text-sm font-black border-2 border-black/10 dark:border-white/10 hover:border-primary hover:text-primary transition-all';
+            });
+
+            // Set active style
+            btn.className = 'size-btn py-4 text-sm font-black border-2 border-primary bg-primary text-white transition-all shadow-[4px_4px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_rgba(255,255,255,0.2)]';
+
+            // Update Add to Cart Button
+            const addToCartBtn = document.querySelector('.add-to-cart');
+            const baseName = addToCartBtn.getAttribute('data-base-name') || addToCartBtn.getAttribute('data-name').split(' (')[0];
+
+            // Store base name if not present
+            if (!addToCartBtn.hasAttribute('data-base-name')) {
+                addToCartBtn.setAttribute('data-base-name', baseName);
+            }
+
+            addToCartBtn.setAttribute('data-name', `${baseName} (${size})`);
+        }
+
+        // Add validation to add to cart
+        const originalAddToCart = document.querySelector('.add-to-cart');
+        const originalText = originalAddToCart.innerText;
+
+        // Intercept click to validate size
+        originalAddToCart.addEventListener('mousedown', (e) => {
+            if (!selectedSize) {
+                alert('Por favor, selecione um tamanho.');
+                e.stopImmediatePropagation();
+                return false;
+            }
+        }, true);
+
+    </script>
+    <script src="js/cart.js"></script>
+</body>
+
+</html>
