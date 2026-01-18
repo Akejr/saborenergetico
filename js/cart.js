@@ -192,11 +192,23 @@ const Cart = {
                 items: items
             };
 
-            // Trocando proxy para allorigins.win (mais permissivo)
-            const proxyUrl = 'https://api.allorigins.win/raw?url=';
-            const targetUrl = 'https://api.infinitepay.io/invoices/public/checkout/links';
+            // Lógica inteligente de Proxy:
+            // - Localhost: Usa o proxy Python (cors_proxy.py)
+            // - Produção (Vercel): Usa a Serverless Function (/api/checkout)
+            let proxyUrl;
+            if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+                proxyUrl = 'http://localhost:8081';
+            } else {
+                proxyUrl = '/api/checkout'; // Caminho da função na Vercel
+            }
 
-            const response = await fetch(proxyUrl + encodeURIComponent(targetUrl), {
+            // Se for prod, não precisamos enviar a URL alvo como query param, pois a função já sabe pra onde ir
+            // Se for local, o python proxy espera só o corpo, ele já tem a URL fixa (ou poderíamos mandar)
+            // No nosso cors_proxy.py atual, ele tem TARGET_URL fixo.
+            // Na função api/checkout.js, ela também tem URL fixa.
+            // Então basta fazer o POST direto para a URL escolhida.
+
+            const response = await fetch(proxyUrl, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
