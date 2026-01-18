@@ -188,7 +188,7 @@ const Cart = {
             }));
 
             const payload = {
-                handle: "onlinepayment2026",
+                handle: "ecasanovs",
                 items: items,
                 redirect_url: window.location.origin + '/success.html'
             };
